@@ -1,0 +1,167 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Great Vibes', cursive;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
+      overflow: hidden;
+      font-size: 16px;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem; 
+      transition: left 1s ease-in-out;
+    }
+
+    .page.active {
+      left: 0;
+    }
+
+    h1 {
+      /* Estilo por defecto para pantallas grandes */
+      font-size: 4rem; 
+      color: #c71585;
+      text-shadow: 2px 2px 5px #fff;
+      margin-bottom: 0.5rem;
+      padding: 0 1rem; /* Añadir padding horizontal por defecto */
+    }
+
+    p {
+      /* Estilo por defecto para pantallas grandes */
+      font-size: 1.8rem; 
+      color: #800040;
+      max-width: 90%; 
+      margin-top: 1rem;
+      line-height: 1.4;
+      padding: 0 0.5rem; /* Añadir padding horizontal por defecto */
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #ff1493;
+      transform: translateY(-2px);
+    }
+    
+    :root {
+      --heart-size: 20px;
+    }
+
+    .heart {
+      position: absolute;
+      width: var(--heart-size);
+      height: var(--heart-size);
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s infinite ease-in;
+      opacity: 0.6;
+      z-index: -1; 
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: var(--heart-size);
+      height: var(--heart-size);
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: calc(var(--heart-size) / -2);
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: calc(var(--heart-size) / -2);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* MEDIA QUERY GENERAL para móviles (hasta 600px) */
+    @media (max-width: 600px) {
+      h1 {
+        /* Tamaño del título escalable en la mayoría de los móviles */
+        font-size: 12vw; 
+      }
+
+      p {
+        /* Tamaño del texto escalable en la mayoría de los móviles */
+        font-size: 5.5vw; 
+        margin-top: 0.5rem;
+      }
+
+      button {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+      }
+      
+      :root {
+        --heart-size: 15px; 
+      }
+    }
+
+    /* NUEVA MEDIA QUERY: Optimización para anchos muy pequeños (308px a 350px) */
+    @media (max-width: 350px) {
+      h1 {
+        /* Reducimos el tamaño de h1 para asegurar que quepa sin desbordar */
+        font-size: 10vw; 
+      }
+      p {
+        /* Reducimos el tamaño del párrafo para que el texto sea más compacto */
+        font-size: 5vw; 
+      }
+      .page {
+         padding: 0.5rem; /* Menos padding en los bordes */
+      }
+      button {
+         padding: 0.6rem 1.2rem;
+         font-size: 0.9rem;
+         margin-top: 1rem;
+      }
+      /* Reducción mínima del corazón */
+      :root {
+        --heart-size: 12px; 
+      }
+    }
+    
+    /* Nota: El viewport meta tag y el uso de VW aseguran que el diseño se adapte 
+       correctamente a 308px, usando los estilos definidos en (max-width: 350px) */

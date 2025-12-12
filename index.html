@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Mi Amor 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+
+  <div class="page active" id="page1">
+    <h1>Carlos y Xime 💌</h1>
+    <p>Hoy queremos recordarles lo mucho que los queremos.</p>
+    <button onclick="nextPage()">Ver más</button>
+  </div>
+
+  <div class="page" id="page2">
+    <h1>Gracias por ser nuestros amigos</h1>
+    <p>Han sido unos amigos espectaculares, nos animan, pero a la hora de aconsejar, son firmes y amables.</p>
+    <button onclick="nextPage()">Siguiente</button>
+  </div>
+
+  <div class="page" id="page3">
+    <h1>Hoy es un dia importante</h1>
+    <p>Hoy recordamos el día de su matrimonio, un día especial que deja ver lo mucho que se aman, y hoy celebramos un año más de muchos que se vienen junto a Jehová.</p>
+    <button onclick="nextPage()">Última</button>
+  </div>
+
+  <div class="page" id="page4">
+    <h1>Vamos que se puede!!</h1>
+    <p>Sigan adelante, que a pesar de las adversidades, con la ayuda de Jehová lograrán hacerle frente a cualquier prueba.</p>
+    <button onclick="restart()">Volver a leer</button>
+  </div>
+
+  <script>
+    const totalHearts = 35;
+    for (let i = 0; i < totalHearts; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      heart.style.bottom = Math.random() * 10 + 'vh'; 
+      heart.style.opacity = Math.random() * 0.5 + 0.3; 
+      document.body.appendChild(heart);
+    }
+
+    let currentPage = 1;
+    function nextPage() {
+      document.getElementById(`page${currentPage}`).style.left = '-100vw'; 
+      document.getElementById(`page${currentPage}`).classList.remove('active'); 
+      currentPage++;
+      if (currentPage > 4) { 
+        currentPage = 4; 
+        return;
+      } 
+      const nextPageElement = document.getElementById(`page${currentPage}`);
+      nextPageElement.style.left = '0';
+      nextPageElement.classList.add('active');
+    }
+
+    function restart() {
+      document.getElementById(`page${currentPage}`).style.left = '100vw'; 
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage = 1;
+      const startPageElement = document.getElementById(`page${currentPage}`);
+      startPageElement.style.left = '0';
+      startPageElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>
